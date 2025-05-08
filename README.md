@@ -1,11 +1,54 @@
-# HangulTalk – Flutter Text Simplification App
+# The쉬운말로 – Flutter 텍스트 쉬운말 변환 앱
 
-HangulTalk is a simple Flutter 3.x sample application that demonstrates a text input -> “easy words” conversion -> result display flow, with a placeholder for OCR. The app currently uses dummy data for conversion (no actual API calls) but is structured to allow adding real services later.
+**The쉬운말로**는 Flutter 3.29.3으로 제작된 간단한 모바일 앱으로,  
+**어려운 문장을 입력하면 쉬운 말로 바꿔주는 흐름**을 보여주는 예제 앱입니다.  
+또한, **OCR(이미지에서 글자 추출)** 기능을 추가할 수 있는 구조도 미리 포함되어 있습니다.
 
-## Features
+현재는 **실제 API 없이 더미 데이터**로 동작하지만,  
+실제 서비스와 연동할 수 있도록 구조화되어 있어 확장이 매우 쉽습니다.
 
-- **Text Simplification (Dummy)**: Users can input text and press a button to convert it into simpler language. The app uses a dummy service (`TextSimplifyService`) to simulate this conversion. The result is shown on a separate screen.
-- **OCR (Planned)**: The app has an OCR screen accessible via a button. Currently, it’s just a placeholder (a button that doesn’t do anything). The code is structured with this separate screen and includes comments, so that in the future one can integrate OCR (for example, using Google ML Kit).
+---
 
-## Project Structure
+## 📌 주요 기능
 
+- ### 🗣️ 쉬운 말 변환 (더미)
+  사용자가 입력한 어려운 문장을 **더 쉬운 말로 바꿔주는 기능**을 제공합니다.  
+  지금은 `dummy_text_service` 라는 더미 서비스가 임의로 변환 결과를 만들어주지만,  
+  **나중에 실제 API**로 교체하기 쉽도록 설계돼 있습니다.  
+  변환된 결과는 별도의 화면에서 원문과 함께 보여집니다.
+
+- ### 📷 OCR 기능 (추후 구현 예정)
+  OCR 화면(이미지에서 글자 추출)이 준비되어 있으며,  
+  현재는 **버튼 UI만 존재하고 동작은 하지 않습니다**.  
+  추후 Google ML Kit 또는 다른 OCR 라이브러리를 연동하면 실제 기능 구현이 가능합니다.
+
+---
+
+## 📁 프로젝트 구조
+
+---
+
+## 🚀 실행 방법
+
+1. Flutter SDK 설치 (Flutter 3.x 이상)
+2. 이 프로젝트를 클론하거나 복사
+3. `flutter pub get` 실행
+4. 에뮬레이터 또는 실기기에서 `flutter run`
+
+---
+
+## 🔧 향후 확장 계획
+
+- ✅ 실제 문장 단순화 API 연결 (예: 한국어 AI 문장 변환 API)
+- ✅ OCR 기능 구현 (Google ML Kit 또는 Tesseract 등)
+- ✅ TTS(음성 읽어주기) 기능 추가
+- ✅ 사용자 맞춤 UI 적용 (디자인 시스템 반영, Figma 기반 개발)
+
+---
+
+## 📣 기여 및 참고
+
+이 프로젝트는 Flutter 학습 및 장애인 접근성 앱 기획을 위해 설계된 예제입니다.  
+누구나 기능을 확장하거나 디자인을 적용하여 사용할 수 있습니다.
+
+---
