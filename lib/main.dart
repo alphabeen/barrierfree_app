@@ -6,8 +6,10 @@ import 'result_screen.dart';
 import 'services/dummy_text_service.dart';
 import 'models/translation_result.dart';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 void main() {
-  runApp(const TheSiUnMarlLo());
+  runApp(const ProviderScope(child: TheSiUnMarlLo()));
 }
 
 class TheSiUnMarlLo extends StatelessWidget {
