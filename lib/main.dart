@@ -1,47 +1,61 @@
 import 'package:flutter/material.dart';
-// 서비스와 화면을 가져옴
-import 'text_input_screen.dart';
-import 'ocr_screen.dart';
-import 'result_screen.dart';
-import 'services/dummy_text_service.dart';
-import 'models/translation_result.dart';
-
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'features/text_simplification/presentation/text_simp_screen.dart';
+import 'features/ocr/presentation/ocr_screen.dart';
 
 void main() {
-  runApp(const ProviderScope(child: TheSiUnMarlLo()));
+  // Riverpod의 ProviderScope로 앱을 감싸 초기화
+  runApp(const ProviderScope(child: MyApp()));
 }
 
-class TheSiUnMarlLo extends StatelessWidget {
-  const TheSiUnMarlLo({Key? key}) : super(key: key);
-
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'The쉬운말로',
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+      title: 'Toss Style Clean Architecture Demo',
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: const HomeScreen(),
+    );
+  }
+}
+
+class HomeScreen extends HookConsumerWidget {
+  const HomeScreen({super.key});
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Home')),
+      body: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // 쉬운말 변환 화면으로 이동
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const TextSimplificationScreen(),
+                  ),
+                );
+              },
+              child: const Text('텍스트 쉬운말 변환'),
+            ),
+            const SizedBox(height: 16),
+            // OCR 인식 화면으로 이동
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const OcrScreen()),
+                );
+              },
+              child: const Text('이미지 OCR 텍스트 추출'),
+            ),
+          ],
+        ),
       ),
-      // 첫 화면을 '/'로 설정
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const TextInputScreen(),
-        '/ocr': (context) => const OcrScreen(),
-        // /result 는 arguments(결과 데이터)를 넘겨야 해서 onGenerateRoute로 따로 처리
-      },
-      onGenerateRoute: (settings) {
-        if (settings.name == '/result') {
-          final args = settings.arguments;
-          if (args is TranslationResult) {
-            return MaterialPageRoute(
-              builder: (context) => ResultScreen(result: args),
-            );
-          }
-        }
-        // /result 외의 다른 경로가 들어오면 null을 반환하여 라우팅 에러로 처리
-        return null;
-      },
     );
   }
 }
